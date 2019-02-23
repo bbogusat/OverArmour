@@ -22,8 +22,10 @@
       {% block navbar %}
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'pages_index' %}">
-            <img src="{% static 'images/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+          <div class="d-inline-block align-top">
+            <img src="{% static 'images/logo.png' %}" width="10%" height="10%" alt="">
             OverArmour
+          </div>
           </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
