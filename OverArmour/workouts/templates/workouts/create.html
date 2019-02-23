@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% load staticfiles %} {% block content %}
+
+<div class="container">
+  </br>
+  <form action="{% url 'create_workout' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %} {{form.as_p}}
+    <input type="submit" value="Create Workout" />
+  </form>
+</div>
+{% endblock %}

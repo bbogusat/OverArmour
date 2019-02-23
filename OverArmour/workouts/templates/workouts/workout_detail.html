@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% load staticfiles %} {% block content %}
+<div class="container">
+  <hr>
+  <h1>Workout Details - {{workout.name}}</h1>
+  <hr>
+  <div class="row">
+    <div class="col-sm-4">
+
+
+      <img src="{{workout.img.url}}" alt="Workout image" style="width:100%;">
+    </div>
+
+    <div class="col-sm-8">
+      {% if user.is_authenticated %}
+      <form action="{% url 'attach_workout' %}" method="post">
+        {% csrf_token %}
+        <input name="workout" type="hidden" value={{workout.id}}>
+        <input class="btn btn-success btn-rounded float-right" type="submit" value="Add to profile">
+      </form>
+
+      {% endif %}
+      <h4>Exercises</h4>
+      <p>
+        <ul>
+          {% for exercise in workout.exercises.all %}
+          <li>
+            {{exercise.name}}
+            <ul>
+              <li>
+                Reps: {{exercise.reps}}
+              </li>
+            </ul>
+          </li>
+          {% endfor %}
+        </ul>
+      </p>
+      </br>
+      <p>
+        Currently there is {{workout.users.all.count}} other {% if workout.users.all.count > 1 %} people {% else %} person {% endif %} using this workout!
+
+        <ul>
+          {% for user in workout.users.all %}
+          <li>
+            {{user.username}}
+          </li>
+          {% endfor %}
+        </ul>
+
+      </p>
+
+      {% if error_message %}
+      <p><strong>{{ error_message }}</strong></p>{% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
